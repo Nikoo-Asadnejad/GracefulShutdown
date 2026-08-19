@@ -64,7 +64,7 @@ When an application receives `SIGTERM`, the library:
 
 ## Critical Operation Tracker
 
-Use the `CriticalOperationTracker` to register operations that must not be interrupted during shutdown.
+Use the `ICriticalOperationTracker` to register operations that must not be interrupted during shutdown.
 
 ```csharp
 
@@ -74,9 +74,9 @@ public async Task ProcessOrderAsync(
 
 {
 
-    using var operation = _tracker.Track();
+    using var operation = _tracker.BeginOperation();
 
-    await ProcessOrderInternalAsync(cancellationToken);
+    await ProcessOrderInternalAsync();
 
 }
 
